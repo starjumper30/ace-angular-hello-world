@@ -8,7 +8,23 @@ import { RouterModule } from '@angular/router';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
+    RouterModule.forRoot(
+      [
+        {
+          path: '',
+          pathMatch: 'full',
+          redirectTo: 'hello',
+        },
+        {
+          path: 'hello',
+          loadChildren: () =>
+            import('./hello-world/hello-world.module').then(
+              (m) => m.HelloWorldModule
+            ),
+        },
+      ],
+      { initialNavigation: 'enabled' }
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent],
