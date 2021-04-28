@@ -5,7 +5,7 @@
   "scripts": {
     "nx": "nx",
     "start": "node dist/apps/hello-world/main.js",
-    "prebuild": "nx build modules-hello-world",
+    "prebuild": "nx build modules-hello-world --prod",
     "build": "nx build",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
