@@ -1,0 +1,63 @@
+{
+    "key": "my-app",
+    "name": "My app",
+    "description": "My very first app",
+    "baseUrl": "{{localBaseUrl}}",
+    "authentication": {
+        "type": "jwt"
+    },
+    "lifecycle": {
+        "installed": "/installed"
+    },
+    "scopes": [
+        "READ"
+    ],
+    "modules": {
+        "serviceDeskPortalHeaders": [
+          {
+            "key": "hello-world-sd-portal-header",
+            "url": "/module-hello-world"
+          }
+        ],
+        "serviceDeskPortalUserMenuActions": [
+            {
+                "key": "hello-world-sd-portal-user-menu-action",
+                "name": {
+                    "value": "Hello World"
+                },
+                "url": "/module-hello-world",
+                "target": {
+                    "type": "dialog",
+                    "options": {
+                        "size": "x-large",
+                        "chrome": false
+                    }
+                }
+            }
+        ],
+        "generalPages": [
+            {
+                "key": "hello-world-page-jira",
+                "location": "system.top.navigation.bar",
+                "name": {
+                    "value": "Hello World"
+                },
+                "url": "/module-hello-world",
+                "conditions": [{
+                    "condition": "user_is_logged_in"
+                }]
+            },
+            {
+                "key": "hello-world-page-side-jira",
+                "location": "jira.project.sidebar.navigation",
+                "name": {
+                    "value": "Hello World"
+                },
+                "url": "/module-hello-world",
+                "conditions": [{
+                    "condition": "user_is_logged_in"
+                }]
+            }
+        ]
+    }
+}

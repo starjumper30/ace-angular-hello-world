@@ -20,20 +20,16 @@
             "main": "apps/hello-world/src/main.ts",
             "tsConfig": "apps/hello-world/tsconfig.app.json",
             "assets": [
-              "apps/hello-world/src/assets"
+              "apps/hello-world/src/assets",
+              "apps/hello-world/src/config.json",
+              "apps/hello-world/src/atlassian-connect.json"
             ]
           },
           "configurations": {
             "production": {
               "optimization": true,
               "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/hello-world/src/environments/environment.ts",
-                  "with": "apps/hello-world/src/environments/environment.prod.ts"
-                }
-              ]
+              "inspect": false
             }
           }
         },
@@ -72,7 +68,7 @@
         "build": {
           "executor": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/modules/hello-world",
+            "outputPath": "apps/hello-world/src/assets/module-hello-world",
             "index": "apps/modules/hello-world/src/index.html",
             "main": "apps/modules/hello-world/src/main.ts",
             "polyfills": "apps/modules/hello-world/src/polyfills.ts",
