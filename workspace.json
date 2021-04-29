@@ -23,8 +23,7 @@
               "apps/hello-world/src/assets",
               "apps/hello-world/src/config.json",
               "apps/hello-world/src/atlassian-connect.json",
-              "apps/hello-world/src/package.json",
-              "apps/hello-world/src/package-lock.json"
+              "apps/hello-world/src/package.json"
             ]
           },
           "configurations": {
