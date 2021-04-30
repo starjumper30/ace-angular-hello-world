@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node main.js"
+    "start": "node main.js"
   },
   "private": true,
   "dependencies": {
