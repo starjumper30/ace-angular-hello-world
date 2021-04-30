@@ -26,4 +26,4 @@ pipelines:
               AZURE_TENANT_ID: $AZURE_TENANT_ID
               AZURE_RESOURCE_GROUP: $AZURE_RESOURCE_GROUP
               AZURE_APP_NAME: $AZURE_APP_NAME
-              ZIP_FILE: 'hello-world-$BITBUCKET_BUILD_NUMBER.zip'
+              ZIP_FILE: 'dist/apps/hello-world-$BITBUCKET_BUILD_NUMBER.zip'
