@@ -65,15 +65,15 @@
     "errorTemplate": true,
 
     // Public URL to production app.
-    "localBaseUrl": "https://my-subdomain.herokuapp.com",
-    "store": {
-      // Don't use memory storage for production, otherwise
-      // data in the storage will go away when the app server restarts.
-      // Here, we use PostgreSQL:
-      "type": "postgres",
-      // PaaS like Heroku will provide DB connection URL through environment variable.
-      "url": "$DATABASE_URL"
-    },
+    "localBaseUrl": "http://ch-helloworld3.azurewebsites.net",
+//    "store": {
+//      // Don't use memory storage for production, otherwise
+//      // data in the storage will go away when the app server restarts.
+//      // Here, we use PostgreSQL:
+//      "type": "postgres",
+//      // PaaS like Heroku will provide DB connection URL through environment variable.
+//      "url": "$DATABASE_URL"
+//    },
 
     // The app can only be registered by the products on these domains:
     "whitelist": [

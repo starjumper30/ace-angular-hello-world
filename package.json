@@ -7,7 +7,6 @@
     "start": "node dist/apps/hello-world/main.js",
     "prebuild": "nx build modules-hello-world --prod",
     "build": "nx build",
-    "package": "cd dist/apps/hello-world && npm install && bestzip ../hello-world.zip *",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
