@@ -59,7 +59,7 @@
   // the NODE_ENV=production environment variable.
   "production": {
     // PaaS like Heroku will provide HTTP port via environement variable.
-    "port": "$PORT",
+    "port": "WEB_PORT",
 
     // Use views/unauthorized.hbs for error page.
     "errorTemplate": true,
@@ -74,6 +74,12 @@
 //      // PaaS like Heroku will provide DB connection URL through environment variable.
 //      "url": "$DATABASE_URL"
 //    },
+    "store": {
+      "adapter": "sequelize",
+      "dialect": "sqlite3",
+      "logging": false,
+      "type": "memory"
+    },
 
     // The app can only be registered by the products on these domains:
     "whitelist": [
