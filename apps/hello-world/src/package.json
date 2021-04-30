@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "export NODE_ENV=production && node main.js",
-    "zip": "bestzip"
+    "start": "export NODE_ENV=production && node main.js"
   },
   "private": true,
   "dependencies": {
