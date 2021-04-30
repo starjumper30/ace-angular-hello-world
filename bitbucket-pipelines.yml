@@ -1,0 +1,28 @@
+image: atlassian/default-image:2
+
+pipelines:
+  default:
+    - step:
+        name: "Build and test"
+        script:
+          - node --version
+          - npm install
+          - npm run lint
+          - npm test
+          - npm run build
+          - cd dist/apps/hello-world
+          - zip -r ../hello-world-$BITBUCKET_BUILD_NUMBER.zip .
+        artifacts:
+          - dist/apps/hello-world-*.zip
+    - step:
+        name: "Deploy to Production"
+        deployment: production
+        script:
+          - pipe: microsoft/azure-web-apps-deploy:1.0.0
+            variables:
+              AZURE_APP_ID: $AZURE_APP_ID
+              AZURE_PASSWORD: $AZURE_PASSWORD
+              AZURE_TENANT_ID: $AZURE_TENANT_ID
+              AZURE_RESOURCE_GROUP: 'group1'
+              AZURE_APP_NAME: 'ch-helloworld4'
+              ZIP_FILE: 'hello-world-$BITBUCKET_BUILD_NUMBER.zip'
