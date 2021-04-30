@@ -1,5 +1,5 @@
 # AceHelloWorld
-
+This app is intended to be deployed to Azure App Services, using Linux and Node 14
 
 ## Deploying to Azure using BitBucket pipelines
 ### Generate a service account for the deploy:

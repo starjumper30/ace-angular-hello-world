@@ -10,7 +10,8 @@ pipelines:
           - npm test
           - npm run build
           - cd dist/apps/hello-world
-          - zip -r ../hello-world-$BITBUCKET_BUILD_NUMBER.zip .
+          - npm run zip -- ../hello-world-$BITBUCKET_BUILD_NUMBER.zip *
+#          - zip -r ../hello-world-$BITBUCKET_BUILD_NUMBER.zip .
         artifacts:
           - dist/apps/hello-world-*.zip
     - step:
