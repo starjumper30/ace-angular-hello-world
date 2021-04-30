@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
-    "start": "node dist/apps/hello-world/main.js",
+    "start": "nx serve",
     "prebuild": "nx build modules-hello-world --prod",
     "build": "nx build",
     "test": "nx test",

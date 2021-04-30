@@ -11,9 +11,9 @@ ngrok http 3000
 
 You must copy the ngrok url that is created and update the localBaseUrl property for development env in apps/hello-world/src/config.json.
 
-In another terminal build and run the app:
+In another terminal build the webap and run the server:
 ```
-npm run build
+npm run prebuild
 npm start
 ```
 
