@@ -9,8 +9,8 @@ pipelines:
           - npm run lint
           - npm test
           - npm run build
-          - cd dist/apps/hello-world
-          - npm run zip -- ../hello-world-$BITBUCKET_BUILD_NUMBER.zip *
+#          - cd dist/apps/hello-world
+          - npm run zip --prefix dist/apps/hello-world -- ../hello-world-$BITBUCKET_BUILD_NUMBER.zip *
 #          - zip -r ../hello-world-$BITBUCKET_BUILD_NUMBER.zip .
         artifacts:
           - dist/apps/hello-world-*.zip
