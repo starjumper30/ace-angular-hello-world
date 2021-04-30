@@ -11,13 +11,14 @@ pipelines:
           - npm run build
           - npm install -g bestzip
           - cd dist/apps/hello-world
-          - bestzip ../hello-world-$BITBUCKET_BUILD_NUMBER.zip *
+          - bestzip ../hello-world-$BITBUCKET_BUILD_NUMBER.zip * .deployment
         artifacts:
           - dist/apps/hello-world-*.zip
     - step:
         name: "Deploy to Production"
         image: atlassian/default-image:2
         deployment: production
+        trigger: manual
         script:
           - pipe: microsoft/azure-web-apps-deploy:1.0.0
             variables:
