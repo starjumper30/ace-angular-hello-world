@@ -3,14 +3,13 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "node main.js"
+    "start": "export NODE_ENV=production && node main.js"
   },
   "private": true,
   "dependencies": {
     "atlassian-connect-express": "^6.6.0",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
-    "cross-env": "^7.0.3",
     "errorhandler": "^1.5.1",
     "express": "4.17.1",
     "helmet": "^4.5.0",
