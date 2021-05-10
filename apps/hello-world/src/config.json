@@ -77,8 +77,8 @@
     "store": {
       "adapter": "sequelize",
       "dialect": "sqlite3",
-      "logging": false,
-      "type": "memory"
+      "logging": true,
+      "type": "/home/hostDB"
     },
 
     // The app can only be registered by the products on these domains:

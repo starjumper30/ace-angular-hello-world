@@ -12,6 +12,7 @@
         "project": ["apps/modules/hello-world/tsconfig.*?.json"]
       },
       "rules": {
+        "eqeqeq": "error",
         "@angular-eslint/directive-selector": [
           "error",
           {
