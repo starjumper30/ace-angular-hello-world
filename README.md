@@ -49,4 +49,6 @@ The output of this command will give you all of the info that you need to enter 
 In Azure portal for you App, go to deployment center and configure deployment from Github (defaults to using Github actions).
 Let it generate and commit a new workflow file for you. This won't have the right build setup. Copy the project specific info from it into the deploy-to-azure.yml file in this repo and then delete the generated one. I believe the app name and publish profile are the only setting you need to modify.
 
-
+### Accessing app files/logs in Azure
+- https://<app-name>.scm.azurewebsites.net
+- https://<app-name>.scm.azurewebsites.net/api/vfs/app.log

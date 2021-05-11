@@ -1,7 +1,28 @@
+process.chdir(__dirname);
+import * as fs from 'fs';
+
+let count = 0;
+const intervalId = setInterval(() => {
+  fs.open('/home/hostDB.sqlite', 'r+', function (err, fd) {
+    count++;
+    if (err) {
+      console.log('file error', err.code);
+      if (count > 10) {
+        clearInterval(intervalId);
+      }
+    } else {
+      console.log('file available');
+      clearInterval(intervalId);
+      fs.close(fd, function () {
+        console.log('file closed');
+        start();
+      });
+    }
+  });
+}, 1000);
+
 // Entry point for the app
 import { AddOnFactory } from 'atlassian-connect-express';
-
-process.chdir(__dirname);
 
 // Express is the underlying that atlassian-connect-express uses:
 // https://expressjs.com
@@ -27,62 +48,64 @@ import * as nocache from 'nocache';
 // Routes live here; this is the C in MVC
 import { routes } from './routes';
 
-// Bootstrap Express and atlassian-connect-express
-const app = express();
-const addon = ((ace as unknown) as AddOnFactory)(app);
+function start() {
+  // Bootstrap Express and atlassian-connect-express
+  const app = express();
+  const addon = ((ace as unknown) as AddOnFactory)(app);
 
-// See config.json
-const port = addon.config.port();
-app.set('port', port);
+  // See config.json
+  const port = addon.config.port();
+  app.set('port', port);
 
-// Log requests, using an appropriate formatter by env
-const devEnv = app.get('env') === 'development';
-app.use(morgan(devEnv ? 'dev' : 'combined'));
+  // Log requests, using an appropriate formatter by env
+  const devEnv = app.get('env') === 'development';
+  app.use(morgan(devEnv ? 'dev' : 'combined'));
 
-// Atlassian security policy requirements
-// http://go.atlassian.com/security-requirements-for-cloud-apps
-// HSTS must be enabled with a minimum age of at least one year
-app.use(
-  helmet.hsts({
-    maxAge: 31536000,
-    includeSubDomains: false,
-  })
-);
-app.use(
-  helmet.referrerPolicy({
-    policy: ['origin'],
-  })
-);
+  // Atlassian security policy requirements
+  // http://go.atlassian.com/security-requirements-for-cloud-apps
+  // HSTS must be enabled with a minimum age of at least one year
+  app.use(
+    helmet.hsts({
+      maxAge: 31536000,
+      includeSubDomains: false,
+    })
+  );
+  app.use(
+    helmet.referrerPolicy({
+      policy: ['origin'],
+    })
+  );
 
-// Include request parsers
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+  // Include request parsers
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(cookieParser());
 
-// Gzip responses when appropriate
-app.use(compression());
+  // Gzip responses when appropriate
+  app.use(compression());
 
-// Include atlassian-connect-express middleware
-app.use(addon.middleware());
+  // Include atlassian-connect-express middleware
+  app.use(addon.middleware());
 
-// Mount the static files directory
-const staticDir = path.join(__dirname, 'assets');
-app.use(express.static(staticDir));
+  // Mount the static files directory
+  const staticDir = path.join(__dirname, 'assets');
+  app.use(express.static(staticDir));
 
-// Atlassian security policy requirements
-// http://go.atlassian.com/security-requirements-for-cloud-apps
-app.use(nocache());
+  // Atlassian security policy requirements
+  // http://go.atlassian.com/security-requirements-for-cloud-apps
+  app.use(nocache());
 
-// Show nicer errors in dev mode
-if (devEnv) app.use(errorHandler());
+  // Show nicer errors in dev mode
+  if (devEnv) app.use(errorHandler());
 
-// Wire up routes
-routes(app);
+  // Wire up routes
+  routes(app);
 
-// Boot the HTTP server
-http.createServer(app).listen(port, () => {
-  console.log('App server running at http://' + os.hostname() + ':' + port);
+  // Boot the HTTP server
+  http.createServer(app).listen(port, () => {
+    console.log('App server running at http://' + os.hostname() + ':' + port);
 
-  // Enables auto registration/de-registration of app into a host in dev mode
-  if (devEnv) addon.register();
-});
+    // Enables auto registration/de-registration of app into a host in dev mode
+    if (devEnv) addon.register();
+  });
+}

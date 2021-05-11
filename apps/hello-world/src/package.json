@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "export NODE_ENV=production && node main.js > /home/app.log 2>&1"
+    "start": "export NODE_ENV=production && node main.js > /home/LogFiles/app-$WEBSITE_INSTANCE_ID.log 2>&1"
   },
   "private": true,
   "dependencies": {
