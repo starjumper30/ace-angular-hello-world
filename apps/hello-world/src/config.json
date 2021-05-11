@@ -6,7 +6,7 @@
   "development": {
     // Port the Express server will listen on.
     "port": 3000,
-    "localBaseUrl": "https://7f14124235f0.ngrok.io",
+    "localBaseUrl": "https://6fcc3c53fcb3.ngrok.io",
 
     // Use views/unauthorized.hbs for error page.
     "errorTemplate": true,
@@ -47,11 +47,20 @@
     // For PostgreSQL, run the following command:
     //
     //   npm install --save pg
+//    "store": {
+//      "adapter": "sequelize",
+//      "dialect": "sqlite3",
+//      "logging": false,
+//      "type": "memory"
+//    }
+
+    // use sqlite with a persistent file instead of memory mode
     "store": {
       "adapter": "sequelize",
       "dialect": "sqlite3",
-      "logging": false,
-      "type": "memory"
+      "logging": true,
+      "type": "sqlite",
+      "storage": "./hostDB.sqlite"
     }
   },
 
@@ -74,11 +83,22 @@
 //      // PaaS like Heroku will provide DB connection URL through environment variable.
 //      "url": "$DATABASE_URL"
 //    },
+//    "store": {
+//      "adapter": "mongodb",
+//      "logging": true,
+//      "url": "",
+//      "database": "",
+//      "collection": "",
+//      "rs": ""
+//    },
+
+    // use sqlite with a persistent file instead of memory mode
     "store": {
       "adapter": "sequelize",
       "dialect": "sqlite3",
       "logging": true,
-      "type": "/home/hostDB"
+      "type": "sqlite",
+      "storage": "/home/hostDB.sqlite"
     },
 
     // The app can only be registered by the products on these domains:
