@@ -21,7 +21,7 @@ In Jira, go to Manage Apps and upload using the ngrok url.
 
 ## Deploy to Azure
 - Install the azure CLI on your system
-- Turn on persistent file storage to store the sqlite file if not using a database service:
+- Turn on persistent file storage to allow storing stdout stderr in your own log files:
 ```
 az webapp config appsettings set --resource-group <group-name> --name <app-name> --settings WEBSITES_ENABLE_APP_SERVICE_STORAGE=true
 ```
@@ -49,6 +49,6 @@ The output of this command will give you all of the info that you need to enter 
 In Azure portal for you App, go to deployment center and configure deployment from Github (defaults to using Github actions).
 Let it generate and commit a new workflow file for you. This won't have the right build setup. Copy the project specific info from it into the deploy-to-azure.yml file in this repo and then delete the generated one. I believe the app name and publish profile are the only setting you need to modify.
 
-### Accessing app files/logs in Azure
+### Accessing Kudu for app in Azure
+The Kudu web interface allows you to access and inspect your running container instance (and access log files).
 - https://<app-name>.scm.azurewebsites.net
-- https://<app-name>.scm.azurewebsites.net/api/vfs/app.log

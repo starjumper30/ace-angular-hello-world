@@ -92,13 +92,11 @@
 //      "rs": ""
 //    },
 
-    // use sqlite with a persistent file instead of memory mode
     "store": {
       "adapter": "sequelize",
       "dialect": "sqlite3",
       "logging": true,
-      "type": "sqlite",
-      "storage": "/home/hostDB.sqlite"
+      "type": "memory"
     },
 
     // The app can only be registered by the products on these domains:
