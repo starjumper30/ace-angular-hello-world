@@ -26,7 +26,21 @@ In Jira, go to Manage Apps and upload using the ngrok url.
 az webapp config appsettings set --resource-group <group-name> --name <app-name> --settings WEBSITES_ENABLE_APP_SERVICE_STORAGE=true
 ```
 ### Create an app in Azure App Services
-Login to the Azure web portal with your azure account.  Under App Services, choose create. Give your app a name and chose linux and node 14.
+- Login to the Azure web portal with your azure account.
+- Under App Services, choose create. 
+- Give your app a name and chose linux and node 14.
+
+### Create an Azure Cosmos DB instance (Mongo)
+- Login to the Azure web portal with your azure account. 
+- Choose Azure Cosmos DB from Azure services and click create.
+- Choose Azure Cosmos DB API for MongoDB.
+- Choose the serverless option (for cheapest and non-global)
+- Copy the Primary Connection String for your new Mongo instance
+- Configure MONGODB_URI environment variable in the azure app service (https://docs.microsoft.com/en-us/azure/app-service/tutorial-nodejs-mongodb-app?pivots=platform-linux#connect-app-to-production-mongodb)
+```
+az login
+az webapp config appsettings set --name <app-name> --resource-group myResourceGroup --settings MONGODB_URI="mongodb://<cosmosdb-name>:<primary-master-key>@<cosmosdb-name>.documents.azure.com:10250/mean?ssl=true"
+```
 
 ### Update environment config
 Open apps/hello-world/src/config.json. This file has the environment-specific configuration used by ACE. You need to update it with the correct URL and database info for your deployment environments.

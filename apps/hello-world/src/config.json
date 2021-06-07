@@ -83,21 +83,18 @@
 //      // PaaS like Heroku will provide DB connection URL through environment variable.
 //      "url": "$DATABASE_URL"
 //    },
-//    "store": {
-//      "adapter": "mongodb",
-//      "logging": true,
-//      "url": "",
-//      "database": "",
-//      "collection": "",
-//      "rs": ""
-//    },
-
     "store": {
-      "adapter": "sequelize",
-      "dialect": "sqlite3",
+      "adapter": "mongodb",
       "logging": true,
-      "type": "memory"
+      "url": "$DATABASE_URL"
     },
+
+//    "store": {
+//      "adapter": "sequelize",
+//      "dialect": "sqlite3",
+//      "logging": true,
+//      "type": "memory"
+//    },
 
     // The app can only be registered by the products on these domains:
     "whitelist": [
