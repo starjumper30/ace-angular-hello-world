@@ -86,7 +86,8 @@
     "store": {
       "adapter": "mongodb",
       "logging": true,
-      "url": "$DATABASE_URL"
+      "url": "$MONGODB_URI",
+      "database": "$DATABASE_NAME"
     },
 
 //    "store": {
