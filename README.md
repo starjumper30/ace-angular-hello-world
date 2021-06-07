@@ -35,11 +35,14 @@ az webapp config appsettings set --resource-group <group-name> --name <app-name>
 - Choose Azure Cosmos DB from Azure services and click create.
 - Choose Azure Cosmos DB API for MongoDB.
 - Choose the serverless option (for cheapest and non-global)
+- Save and go to the main page for this new resource
+- Create a new database under this cosmo account (you will configure database name as an environment variable below)  
 - Copy the Primary Connection String for your new Mongo instance
 - Configure MONGODB_URI environment variable in the azure app service (https://docs.microsoft.com/en-us/azure/app-service/tutorial-nodejs-mongodb-app?pivots=platform-linux#connect-app-to-production-mongodb)
 ```
 az login
 az webapp config appsettings set --name <app-name> --resource-group myResourceGroup --settings MONGODB_URI="mongodb://<cosmosdb-name>:<primary-master-key>@<cosmosdb-name>.documents.azure.com:10250/mean?ssl=true"
+az webapp config appsettings set --name <app-name> --resource-group myResourceGroup --settings DATABASE_NAME=<yourdatabase-name>
 ```
 
 ### Update environment config
