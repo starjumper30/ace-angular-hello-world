@@ -57,8 +57,7 @@
       "adapter": "sequelize",
       "dialect": "sqlite3",
       "logging": true,
-      "type": "sqlite",
-      "storage": "./hostDB.sqlite"
+      "type": "memory"
     }
   },
 
