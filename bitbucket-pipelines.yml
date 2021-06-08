@@ -2,8 +2,9 @@ pipelines:
   default:
     - step:
         name: "Build and test"
-        image: node:14
+        image: cypress/included:7.2.0
         script:
+          - git fetch origin main:refs/remotes/origin/main
           - node --version
           - npm --version
           - npm install
