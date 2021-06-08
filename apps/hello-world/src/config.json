@@ -6,10 +6,8 @@
   "development": {
     // Port the Express server will listen on.
     "port": 3000,
-    "localBaseUrl": "https://6fcc3c53fcb3.ngrok.io",
-
     // Use views/unauthorized.hbs for error page.
-    "errorTemplate": true,
+    "errorTemplate": false,
 
     // atlassian-connect-express currently integrates with Sequelize for
     // persistence to store the host client information (i.e. client key,
@@ -47,12 +45,12 @@
     // For PostgreSQL, run the following command:
     //
     //   npm install --save pg
-//    "store": {
-//      "adapter": "sequelize",
-//      "dialect": "sqlite3",
-//      "logging": false,
-//      "type": "memory"
-//    }
+    //    "store": {
+    //      "adapter": "sequelize",
+    //      "dialect": "sqlite3",
+    //      "logging": false,
+    //      "type": "memory"
+    //    }
 
     // use sqlite with a persistent file instead of memory mode
     "store": {
@@ -71,18 +69,18 @@
     "port": "$PORT",
 
     // Use views/unauthorized.hbs for error page.
-    "errorTemplate": true,
+    "errorTemplate": false,
 
     // Public URL to production app.
     "localBaseUrl": "$LOCAL_BASE_URL",
-//    "store": {
-//      // Don't use memory storage for production, otherwise
-//      // data in the storage will go away when the app server restarts.
-//      // Here, we use PostgreSQL:
-//      "type": "postgres",
-//      // PaaS like Heroku will provide DB connection URL through environment variable.
-//      "url": "$DATABASE_URL"
-//    },
+    //    "store": {
+    //      // Don't use memory storage for production, otherwise
+    //      // data in the storage will go away when the app server restarts.
+    //      // Here, we use PostgreSQL:
+    //      "type": "postgres",
+    //      // PaaS like Heroku will provide DB connection URL through environment variable.
+    //      "url": "$DATABASE_URL"
+    //    },
     "store": {
       "adapter": "mongodb",
       "logging": true,
@@ -90,12 +88,12 @@
       "database": "$DATABASE_NAME"
     },
 
-//    "store": {
-//      "adapter": "sequelize",
-//      "dialect": "sqlite3",
-//      "logging": true,
-//      "type": "memory"
-//    },
+    //    "store": {
+    //      "adapter": "sequelize",
+    //      "dialect": "sqlite3",
+    //      "logging": true,
+    //      "type": "memory"
+    //    },
 
     // The app can only be registered by the products on these domains:
     "whitelist": [

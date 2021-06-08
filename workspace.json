@@ -12,9 +12,7 @@
       "targets": {
         "build": {
           "executor": "@nrwl/node:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/hello-world",
             "main": "apps/hello-world/src/main.ts",
@@ -24,7 +22,8 @@
               "apps/hello-world/src/config.json",
               "apps/hello-world/src/atlassian-connect.json",
               "apps/hello-world/src/package.json",
-              "apps/hello-world/src/.deployment"
+              "apps/hello-world/src/.deployment",
+              "apps/hello-world/src/credentials.json"
             ]
           },
           "configurations": {
@@ -44,16 +43,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/hello-world/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/hello-world/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/hello-world"
-          ],
+          "outputs": ["coverage/apps/hello-world"],
           "options": {
             "jestConfig": "apps/hello-world/jest.config.js",
             "passWithNoTests": true
@@ -80,9 +75,7 @@
               "apps/modules/hello-world/src/favicon.ico",
               "apps/modules/hello-world/src/assets"
             ],
-            "styles": [
-              "apps/modules/hello-world/src/styles.scss"
-            ],
+            "styles": ["apps/modules/hello-world/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -143,9 +136,7 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/modules/hello-world"
-          ],
+          "outputs": ["coverage/apps/modules/hello-world"],
           "options": {
             "jestConfig": "apps/modules/hello-world/jest.config.js",
             "passWithNoTests": true
@@ -174,9 +165,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/modules/hello-world-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/modules/hello-world-e2e/**/*.{js,ts}"]
           }
         }
       }

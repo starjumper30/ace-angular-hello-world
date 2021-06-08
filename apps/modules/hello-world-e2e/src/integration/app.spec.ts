@@ -8,6 +8,6 @@ describe('modules-hello-world', () => {
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome to modules-hello-world!');
+    getGreeting().contains('Hello World');
   });
 });
