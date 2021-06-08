@@ -12,6 +12,9 @@
     "scopes": [
         "READ"
     ],
+    "apiMigrations": {
+      "context-qsh": true
+    },
     "modules": {
         "serviceDeskPortalHeaders": [
           {
