@@ -74,7 +74,7 @@
     "errorTemplate": true,
 
     // Public URL to production app.
-    "localBaseUrl": "https://ch-helloworld3.azurewebsites.net",
+    "localBaseUrl": "$LOCAL_BASE_URL",
 //    "store": {
 //      // Don't use memory storage for production, otherwise
 //      // data in the storage will go away when the app server restarts.
