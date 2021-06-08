@@ -37,16 +37,16 @@ az webapp config appsettings set --resource-group <group-name> --name <app-name>
 - Choose the serverless option (for cheapest and non-global)
 - Save and go to the main page for this new resource
 - Create a new database under this cosmo account (you will configure database name as an environment variable below)  
-- Copy the Primary Connection String for your new Mongo instance
-- Configure MONGODB_URI environment variable in the azure app service (https://docs.microsoft.com/en-us/azure/app-service/tutorial-nodejs-mongodb-app?pivots=platform-linux#connect-app-to-production-mongodb)
+- Copy the Primary Connection String for your new Mongo instance to be used in the command below.
+
+### Update Azure environment config
 ```
 az login
 az webapp config appsettings set --name <app-name> --resource-group myResourceGroup --settings MONGODB_URI="mongodb://<cosmosdb-name>:<primary-master-key>@<cosmosdb-name>.documents.azure.com:10250/mean?ssl=true"
 az webapp config appsettings set --name <app-name> --resource-group myResourceGroup --settings DATABASE_NAME=<yourdatabase-name>
+az webapp config appsettings set --name <app-name> --resource-group myResourceGroup --settings LOCAL_BASE_URL=<app-url>
 ```
 
-### Update environment config
-Open apps/hello-world/src/config.json. This file has the environment-specific configuration used by ACE. You need to update it with the correct URL and database info for your deployment environments.
 
 ### Deploying to Azure using BitBucket pipelines
 
@@ -69,3 +69,4 @@ Let it generate and commit a new workflow file for you. This won't have the righ
 ### Accessing Kudu for app in Azure
 The Kudu web interface allows you to access and inspect your running container instance (and access log files).
 - https://<app-name>.scm.azurewebsites.net
+- https://<app-name>.scm.azurewebsites.net/api/vfs/LogFiles/
