@@ -4,6 +4,7 @@
   // "development" is the default environment.
   // To change, set NODE_ENV (http://expressjs.com/api.html#app.configure).
   "development": {
+    "validateDescriptor": true,
     // Port the Express server will listen on.
     "port": 3000,
     // Use views/unauthorized.hbs for error page.

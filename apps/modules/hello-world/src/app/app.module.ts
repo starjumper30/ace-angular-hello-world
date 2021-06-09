@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { APP_BASE_HREF } from '@angular/common';
-import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +26,6 @@ import { environment } from '../environments/environment';
       { initialNavigation: 'enabled' }
     ),
   ],
-  providers: [{ provide: APP_BASE_HREF, useValue: environment.baseHref }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

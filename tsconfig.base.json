@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ace-hello-world/hello-world/dialog": [
+        "libs/hello-world/dialog/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

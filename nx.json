@@ -17,6 +17,9 @@
     "modules/hello-world-e2e": {
       "tags": [],
       "implicitDependencies": ["modules-hello-world"]
-    }
+    },
+    "modules-hello-world-header": { "tags": [] },
+    "modules-hello-world-entrypoint": { "tags": [] },
+    "hello-world-dialog": { "tags": [] }
   }
 }

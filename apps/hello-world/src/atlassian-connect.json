@@ -1,66 +1,82 @@
 {
-    "key": "my-app",
-    "name": "My app",
-    "description": "My very first app",
-    "baseUrl": "{{localBaseUrl}}",
-    "authentication": {
-        "type": "jwt"
-    },
-    "lifecycle": {
-        "installed": "/installed"
-    },
-    "scopes": [
-        "READ"
+  "key": "my-app",
+  "name": "My app",
+  "description": "My very first app",
+  "baseUrl": "{{localBaseUrl}}",
+  "authentication": {
+    "type": "jwt"
+  },
+  "lifecycle": {
+    "installed": "/installed"
+  },
+  "scopes": ["READ"],
+  "apiMigrations": {
+    "context-qsh": true
+  },
+  "modules": {
+    "serviceDeskPortalHeaders": [
+      {
+        "key": "hello-world-sd-portal-header",
+        "url": "/module-hello-world-header"
+      }
     ],
-    "apiMigrations": {
-      "context-qsh": true
-    },
-    "modules": {
-        "serviceDeskPortalHeaders": [
-          {
-            "key": "hello-world-sd-portal-header",
-            "url": "/module-hello-world"
+    "serviceDeskPortalUserMenuActions": [
+      {
+        "key": "hello-world-sd-portal-user-menu-action",
+        "name": {
+          "value": "Hello World"
+        },
+        "url": "/module-hello-world-entrypoint",
+        "target": {
+          "type": "dialog",
+          "options": {
+            "size": "large",
+            "chrome": false
           }
-        ],
-        "serviceDeskPortalUserMenuActions": [
-            {
-                "key": "hello-world-sd-portal-user-menu-action",
-                "name": {
-                    "value": "Hello World"
-                },
-                "url": "/module-hello-world",
-                "target": {
-                    "type": "dialog",
-                    "options": {
-                        "size": "x-large",
-                        "chrome": false
-                    }
-                }
-            }
-        ],
-        "generalPages": [
-            {
-                "key": "hello-world-page-jira",
-                "location": "system.top.navigation.bar",
-                "name": {
-                    "value": "Hello World"
-                },
-                "url": "/module-hello-world",
-                "conditions": [{
-                    "condition": "user_is_logged_in"
-                }]
-            },
-            {
-                "key": "hello-world-page-side-jira",
-                "location": "jira.project.sidebar.navigation",
-                "name": {
-                    "value": "Hello World"
-                },
-                "url": "/module-hello-world",
-                "conditions": [{
-                    "condition": "user_is_logged_in"
-                }]
-            }
+        },
+        "conditions": [{ "condition": "user_is_logged_in" }]
+      }
+    ],
+    "generalPages": [
+      {
+        "key": "hello-world-page-jira",
+        "location": "system.top.navigation.bar",
+        "name": {
+          "value": "Hello World"
+        },
+        "url": "/module-hello-world",
+        "conditions": [
+          {
+            "condition": "user_is_logged_in"
+          }
         ]
-    }
+      },
+      {
+        "key": "hello-world-page-side-jira",
+        "location": "jira.project.sidebar.navigation",
+        "name": {
+          "value": "Hello World"
+        },
+        "url": "/module-hello-world",
+        "conditions": [
+          {
+            "condition": "user_is_logged_in"
+          }
+        ]
+      }
+    ],
+    "dialogs": [
+      {
+        "url": "/module-hello-world?dialog=true",
+        "options": {
+          "width": "100%",
+          "height": "100%",
+          "size": "maximum",
+          "chrome": false,
+          "closeOnEscape": false
+        },
+        "key": "hello-world-dialog-module-key"
+      }
+    ]
+  }
 }

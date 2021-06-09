@@ -1,9 +1,32 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/express"
-  },
+  "cli": { "defaultCollection": "@nrwl/express" },
   "defaultProject": "hello-world",
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": { "style": "scss" },
+    "@nrwl/web:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/web:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    }
+  },
   "projects": {
     "hello-world": {
       "root": "apps/hello-world",
@@ -36,15 +59,11 @@
         },
         "serve": {
           "executor": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "hello-world:build"
-          }
+          "options": { "buildTarget": "hello-world:build" }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/hello-world/**/*.ts"]
-          }
+          "options": { "lintFilePatterns": ["apps/hello-world/**/*.ts"] }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -71,10 +90,7 @@
             "polyfills": "apps/modules/hello-world/src/polyfills.ts",
             "tsConfig": "apps/modules/hello-world/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/modules/hello-world/src/favicon.ico",
-              "apps/modules/hello-world/src/assets"
-            ],
+            "assets": ["apps/modules/hello-world/src/assets"],
             "styles": ["apps/modules/hello-world/src/styles.scss"],
             "scripts": []
           },
@@ -90,7 +106,7 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "extractLicenses": true,
+              "extractLicenses": false,
               "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
@@ -104,15 +120,14 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "baseHref": ""
             }
           }
         },
         "serve": {
           "executor": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "modules-hello-world:build"
-          },
+          "options": { "browserTarget": "modules-hello-world:build" },
           "configurations": {
             "production": {
               "browserTarget": "modules-hello-world:build:production"
@@ -121,9 +136,7 @@
         },
         "extract-i18n": {
           "executor": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "modules-hello-world:build"
-          }
+          "options": { "browserTarget": "modules-hello-world:build" }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
@@ -169,22 +182,153 @@
           }
         }
       }
-    }
-  },
-  "generators": {
-    "@nrwl/angular:application": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
     },
-    "@nrwl/angular:library": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest"
+    "modules-hello-world-header": {
+      "projectType": "application",
+      "root": "apps/modules/hello-world-header",
+      "sourceRoot": "apps/modules/hello-world-header/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "apps/hello-world/src/assets/module-hello-world-header",
+            "index": "apps/modules/hello-world-header/src/index.html",
+            "main": "apps/modules/hello-world-header/src/main.ts",
+            "polyfills": "apps/modules/hello-world-header/src/polyfills.ts",
+            "tsConfig": "apps/modules/hello-world-header/tsconfig.app.json",
+            "assets": [],
+            "styles": [],
+            "scripts": [],
+            "baseHref": ""
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": false,
+              "namedChunks": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": { "buildTarget": "modules-hello-world-header:build" },
+          "configurations": {
+            "production": {
+              "buildTarget": "modules-hello-world-header:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/modules/hello-world-header/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/modules/hello-world-header"],
+          "options": {
+            "jestConfig": "apps/modules/hello-world-header/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     },
-    "@nrwl/angular:component": {
-      "style": "scss"
+    "modules-hello-world-entrypoint": {
+      "projectType": "application",
+      "root": "apps/modules/hello-world-entrypoint",
+      "sourceRoot": "apps/modules/hello-world-entrypoint/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "apps/hello-world/src/assets/module-hello-world-entrypoint",
+            "index": "apps/modules/hello-world-entrypoint/src/index.html",
+            "main": "apps/modules/hello-world-entrypoint/src/main.ts",
+            "polyfills": "apps/modules/hello-world-entrypoint/src/polyfills.ts",
+            "tsConfig": "apps/modules/hello-world-entrypoint/tsconfig.app.json",
+            "assets": [],
+            "styles": [],
+            "scripts": [],
+            "baseHref": ""
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": false,
+              "namedChunks": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": { "buildTarget": "modules-hello-world-entrypoint:build" },
+          "configurations": {
+            "production": {
+              "buildTarget": "modules-hello-world-entrypoint:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/modules/hello-world-entrypoint/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/modules/hello-world-entrypoint"],
+          "options": {
+            "jestConfig": "apps/modules/hello-world-entrypoint/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "hello-world-dialog": {
+      "root": "libs/hello-world/dialog",
+      "sourceRoot": "libs/hello-world/dialog/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/hello-world/dialog/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/hello-world/dialog"],
+          "options": {
+            "jestConfig": "libs/hello-world/dialog/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }
