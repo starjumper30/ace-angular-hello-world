@@ -1,0 +1,75 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '14.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    set -e
+    npm install
+    echo "install finished"
+    npm run lint
+    npm run format:check -- --all
+    mv apps/hello-world/src/credentials.sample.json apps/hello-world/src/credentials.json
+    npm test
+    # npm run e2e
+    npm run prebuild
+    # going to build server app with a clean install that does not have web deps
+    rm -rf package*.json
+    rm -rf node_modules
+    cp apps/hello-world/src/package*.json ./
+    npm install
+    npm run build:server
+    rm dist/apps/hello-world/credentials.json
+  displayName: 'npm install and build'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'dist/apps/hello-world'
+    ArtifactName: 'hello-world'
+    publishLocation: 'Container'
+    StoreAsTar: true
+
+# - task: DownloadBuildArtifacts@1
+#   inputs:
+#     buildType: 'current'
+#     downloadType: 'single'
+#     artifactName: 'hello-world'
+#     downloadPath: '$(System.ArtifactsDirectory)'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'deploy-connection'
+    appType: 'webAppLinux'
+    WebAppName: '$(WebAppName)'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/dist/apps/hello-world'
+    UseWebDeploy: true
+    DeployToSlotOrASEFlag: true
+    ResourceGroupName: '$(ResourceGroup)'
+    SlotName: sandbox
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'deploy-connection'
+    appType: 'webAppLinux'
+    WebAppName: '$(WebAppName)'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/dist/apps/hello-world'
+    UseWebDeploy: true
+    DeployToSlotOrASEFlag: true
+    ResourceGroupName: '$(ResourceGroup)'
+    SlotName: staging
+
+
