@@ -3,8 +3,23 @@
 This is an Nx workspace containing one node app using Atlassian Connect Express (ACE) framework to serve one Angular app as a Jira Plugin.
 This app is intended to be deployed to Azure App Services, using Linux and Node 14
 
-### Run server locally to be installed and run from Jira
+## Writing Service Desk Add-ons
 
+List of extension points: https://developer.atlassian.com/cloud/jira/service-desk/customer-portal/
+
+"Actions" are menu options that will launch your app in a dialog.
+You have very little control over the size and location of this dialog (most of the documented options don't actually work).
+To get around this, I have the action launch a tiny app (hello-world-entrypoint), whose sole function is then to launch another app (hello-world) inside
+a dialog using the ACE dialog API directly.That gives you full control over the dialog, and is the only way I have found to take over the whole screen.
+
+"Panels" are apps that are loaded inline on predefined locations within the portal. These are just apps running in inline iframes.
+While they are not launched with dialogs themselves, they are free to launch their own dialogs using the ACE API.
+hello-world-header is an example of such a panel.
+
+## Run server locally to be installed and run from Jira
+
+- Create your own development instance of jira: https://www.atlassian.com/try/cloud/signup?product=confluence.ondemand,jira-software.ondemand,jira-servicedesk.ondemand,jira-core.ondemand&developer=true
+- You must first enable Development Mode on your Jira site. Go to Apps -> Manage apps and then click the settings link at the bottom of the page.
 - Create an API token for your atlassian account at https://id.atlassian.com/manage-profile/security/api-tokens
 - Copy credentials.sample.json to credentials.json and update it with the URL to your jira instance, your username, and your api token
 - Build the webapp and run the server:
