@@ -5,7 +5,7 @@
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "parserOptions": {
-        "project": ["apps/modules/hello-world-header/tsconfig.*?.json"]
+        "project": ["apps/modules/hello-world-panel/tsconfig.*?.json"]
       },
       "rules": {}
     },

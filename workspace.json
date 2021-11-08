@@ -183,20 +183,20 @@
         }
       }
     },
-    "modules-hello-world-header": {
+    "modules-hello-world-panel": {
       "projectType": "application",
-      "root": "apps/modules/hello-world-header",
-      "sourceRoot": "apps/modules/hello-world-header/src",
+      "root": "apps/modules/hello-world-panel",
+      "sourceRoot": "apps/modules/hello-world-panel/src",
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "apps/hello-world/src/assets/module-hello-world-header",
-            "index": "apps/modules/hello-world-header/src/index.html",
-            "main": "apps/modules/hello-world-header/src/main.ts",
-            "polyfills": "apps/modules/hello-world-header/src/polyfills.ts",
-            "tsConfig": "apps/modules/hello-world-header/tsconfig.app.json",
+            "outputPath": "apps/hello-world/src/assets/module-hello-world-panel",
+            "index": "apps/modules/hello-world-panel/src/index.html",
+            "main": "apps/modules/hello-world-panel/src/main.ts",
+            "polyfills": "apps/modules/hello-world-panel/src/polyfills.ts",
+            "tsConfig": "apps/modules/hello-world-panel/tsconfig.app.json",
             "assets": [],
             "styles": [],
             "scripts": [],
@@ -224,24 +224,24 @@
         },
         "serve": {
           "executor": "@nrwl/web:dev-server",
-          "options": { "buildTarget": "modules-hello-world-header:build" },
+          "options": { "buildTarget": "modules-hello-world-panel:build" },
           "configurations": {
             "production": {
-              "buildTarget": "modules-hello-world-header:build:production"
+              "buildTarget": "modules-hello-world-panel:build:production"
             }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/modules/hello-world-header/**/*.ts"]
+            "lintFilePatterns": ["apps/modules/hello-world-panel/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/modules/hello-world-header"],
+          "outputs": ["coverage/apps/modules/hello-world-panel"],
           "options": {
-            "jestConfig": "apps/modules/hello-world-header/jest.config.js",
+            "jestConfig": "apps/modules/hello-world-panel/jest.config.js",
             "passWithNoTests": true
           }
         }

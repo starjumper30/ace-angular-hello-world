@@ -17,7 +17,76 @@
     "serviceDeskPortalHeaders": [
       {
         "key": "hello-world-sd-portal-header",
-        "url": "/module-hello-world-header"
+        "url": "/module-hello-world-panel?panelType=serviceDeskPortalHeaders",
+        "conditions": [{ "condition": "user_is_logged_in" }],
+        "weight": 100,
+        "pages": [
+          "help_center",
+          "portal",
+          "create_request",
+          "view_request",
+          "my_requests",
+          "approvals",
+          "profile"
+        ]
+      }
+    ],
+    "serviceDeskPortalSubHeaders": [
+      {
+        "key": "hello-world-sd-portal-sub-header",
+        "url": "/module-hello-world-panel?panelType=serviceDeskPortalSubHeaders",
+        "conditions": [{ "condition": "user_is_logged_in" }],
+        "weight": 100,
+        "pages": [
+          "help_center",
+          "portal",
+          "create_request",
+          "view_request",
+          "my_requests",
+          "approvals",
+          "profile"
+        ]
+      }
+    ],
+    "serviceDeskPortalFooters": [
+      {
+        "key": "hello-world-sd-portal-footer",
+        "url": "/module-hello-world-panel?panelType=serviceDeskPortalFooters",
+        "conditions": [{ "condition": "user_is_logged_in" }],
+        "weight": 100,
+        "pages": [
+          "help_center",
+          "portal",
+          "create_request",
+          "view_request",
+          "my_requests",
+          "approvals",
+          "profile"
+        ]
+      }
+    ],
+    "serviceDeskPortalRequestViewPanels": [
+      {
+        "key": "hello-world-sd-portal-request-view",
+        "url": "/module-hello-world-panel?panelType=serviceDeskPortalRequestViewPanels",
+        "conditions": [{ "condition": "user_is_logged_in" }],
+        "weight": 100
+      }
+    ],
+    "serviceDeskPortalRequestViewDetailsPanels": [
+      {
+        "key": "hello-world-sd-portal-request-view-details",
+        "url": "/module-hello-world-panel?panelType=serviceDeskPortalRequestViewDetailsPanels",
+        "conditions": [{ "condition": "user_is_logged_in" }],
+        "weight": 100
+      }
+    ],
+    "serviceDeskPortalProfilePanels": [
+      {
+        "key": "hello-world-sd-portal-profile",
+        "url": "/module-hello-world-panel?panelType=serviceDeskPortalProfilePanels",
+        "conditions": [{ "condition": "user_is_logged_in" }],
+        "weight": 100
       }
     ],
     "serviceDeskPortalUserMenuActions": [
@@ -34,7 +103,44 @@
             "chrome": false
           }
         },
-        "conditions": [{ "condition": "user_is_logged_in" }]
+        "conditions": [{ "condition": "user_is_logged_in" }],
+        "weight": 100
+      }
+    ],
+    "serviceDeskPortalProfileActions": [
+      {
+        "key": "hello-world-sd-portal-profile-page-action",
+        "name": {
+          "value": "Hello World"
+        },
+        "url": "/module-hello-world-entrypoint",
+        "target": {
+          "type": "dialog",
+          "options": {
+            "size": "large",
+            "chrome": false
+          }
+        },
+        "conditions": [{ "condition": "user_is_logged_in" }],
+        "weight": 100
+      }
+    ],
+    "serviceDeskPortalRequestViewActions": [
+      {
+        "key": "hello-world-sd-portal-request-view-action",
+        "name": {
+          "value": "Hello World"
+        },
+        "url": "/module-hello-world-entrypoint",
+        "target": {
+          "type": "dialog",
+          "options": {
+            "size": "large",
+            "chrome": false
+          }
+        },
+        "conditions": [{ "condition": "user_is_logged_in" }],
+        "weight": 100
       }
     ],
     "generalPages": [

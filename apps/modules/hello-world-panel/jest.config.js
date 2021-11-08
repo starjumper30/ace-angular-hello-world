@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'modules-hello-world-header',
+  displayName: 'modules-hello-world-panel',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../../coverage/apps/modules/hello-world-header',
+  coverageDirectory: '../../../coverage/apps/modules/hello-world-panel',
 };

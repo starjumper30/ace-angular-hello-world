@@ -14,7 +14,7 @@ a dialog using the ACE dialog API directly.That gives you full control over the 
 
 "Panels" are apps that are loaded inline on predefined locations within the portal. These are just apps running in inline iframes.
 While they are not launched with dialogs themselves, they are free to launch their own dialogs using the ACE API.
-hello-world-header is an example of such a panel.
+hello-world-panel is an example of such a panel.
 
 ## Run server locally to be installed and run from Jira
 
