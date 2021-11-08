@@ -1,7 +1,7 @@
-# AceHelloWorld
+# Ace Angular Hello World
 
-This is an Nx workspace containing one node app using Atlassian Connect Express (ACE) framework to serve one Angular app as a Jira Plugin.
-This app is intended to be deployed to Azure App Services, using Linux and Node 14
+This is an Nx workspace containing one node app using Atlassian Connect Express (ACE) framework to serve one Angular app as a Jira Service Management Add-on.
+This app is intended to be deployed to Azure App Services, using Linux and Node 14.
 
 ## Writing Service Desk Add-ons
 
@@ -28,6 +28,13 @@ hello-world-panel is an example of such a panel.
 npm run prebuild
 nx serve
 ```
+
+*Note: If you wish to install your local dev copy into a Jira instance that already has your deployed version installed,
+you just need to do a find/replace in your local copy of atlassian-connect.json to modify the keys. In the image below,
+I am simply prepending every key with "local-". This allows for testing multiple copies of the add-on in a shared Jira sandbox.
+When we had multiple developers sharing a sandbox, we each prepended our first name onto the keys in our local config, and this worked well.
+
+![replacing local keys](./docs/local-keys.png 'Replacing local keys')
 
 ## Deploy to Azure
 
@@ -95,9 +102,9 @@ Assumptions:
 - Enter deploy-connection as the Service Connection Name (this is referenced in the pipeline yaml file)
 - Save
 
-\*1: In Azure portal, you can find the Subscription ID and Name at the bottom of the properties page for your App Service
+*1: In Azure portal, you can find the Subscription ID and Name at the bottom of the properties page for your App Service
 
-\*2:
+*2:
 
 - In Azure portal, you can find the name of the FTP/deployment user on the properties page for your App Service, copy this
 - In Azure portal, open Azure Active Directory and search for the deployment user you copied
@@ -107,7 +114,7 @@ Assumptions:
 - In the left nav, click "Certificates & secrets"
 - A user with the right permissions should be able to add a secret here, this will be used as the Service Principal Key
 
-\*3: In Azure portal home, search for Tenant Properties
+*3: In Azure portal home, search for Tenant Properties
 
 #### Create a new Pipeline
 

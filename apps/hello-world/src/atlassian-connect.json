@@ -1,6 +1,6 @@
 {
-  "key": "my-app",
-  "name": "My app",
+  "key": "hello-world",
+  "name": "Hello World",
   "description": "My very first app",
   "baseUrl": "{{localBaseUrl}}",
   "authentication": {
