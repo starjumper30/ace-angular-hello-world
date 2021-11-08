@@ -1,3 +1,6 @@
+import { AddonRequest } from './services/endpoint.service';
+import { isConfiguredHost, logHosts } from './services/environment.service';
+
 process.chdir(__dirname);
 
 // Entry point for the app
@@ -65,6 +68,29 @@ app.use(compression());
 // Include atlassian-connect-express middleware
 app.use(addon.middleware());
 
+const authMiddleware = addon.authenticate(true);
+
+// Prevent loading modules outside jira
+app.use(
+  '/module-*',
+  (
+    request: AddonRequest,
+    response: express.Response,
+    next: express.NextFunction
+  ) => {
+    if (
+      request.originalUrl.endsWith('.js') ||
+      request.originalUrl.endsWith('.css') ||
+      request.originalUrl.startsWith('/module-hello-world/assets/')
+    ) {
+      // allow asset files loaded by angular. We're really just trying to block the index.html.
+      request.next();
+    } else {
+      authMiddleware(request, response, next);
+    }
+  }
+);
+
 // Mount the static files directory
 const staticDir = path.join(__dirname, 'assets');
 app.use(express.static(staticDir));
@@ -75,6 +101,47 @@ app.use(nocache());
 
 // Show nicer errors in dev mode
 if (devEnv) app.use(errorHandler());
+
+app.use(
+  '/installed',
+  (
+    request: AddonRequest,
+    response: express.Response,
+    next: express.NextFunction
+  ) => {
+    const host = request.body.baseUrl;
+    console.log('INSTALLING HOST', host);
+    if (isConfiguredHost(host)) {
+      next();
+    } else {
+      const msg = `The originating JIRA Host '${host}' is not authorized for this addon`;
+      console.log(msg);
+      logHosts();
+      response.status(403).send(msg);
+    }
+  }
+);
+
+app.use(
+  '/api/*',
+  (
+    request: AddonRequest,
+    response: express.Response,
+    next: express.NextFunction
+  ) => {
+    const host = request.context.hostBaseUrl;
+    console.debug('REQUEST FOR', host);
+    if (isConfiguredHost(host)) {
+      authMiddleware(request, response, next);
+    } else {
+      response
+        .status(403)
+        .send(
+          `The originating JIRA Host ${host} is not authorized for this addon`
+        );
+    }
+  }
+);
 
 // Wire up routes
 routes(app);
