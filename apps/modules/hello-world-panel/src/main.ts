@@ -5,3 +5,4 @@ document.getElementById('launch').onclick = () => launchDialog();
 const panelType = new URL(document.location.href).searchParams.get('panelType');
 
 document.getElementById('panelFooter').innerText = `${panelType}`;
+window['AP'].resize();
