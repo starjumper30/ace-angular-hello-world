@@ -122,6 +122,7 @@ app.use(
   }
 );
 
+app.use('/api/*', authMiddleware);
 app.use(
   '/api/*',
   (
@@ -132,7 +133,7 @@ app.use(
     const host = request.context.hostBaseUrl;
     console.debug('REQUEST FOR', host);
     if (isConfiguredHost(host)) {
-      authMiddleware(request, response, next);
+      next();
     } else {
       response
         .status(403)
